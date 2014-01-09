@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+  int value;
+  struct node* ptr;
+}
+node;
+
+int dijpower(int input);
+bool addlink(int input);
+
+node* first = NULL;
+
+int main(void)
+{
+  first = malloc(sizeof(node));
+  node* nextptr = first;
+  for(int i = 0; i < 295245; i++)
+    {
+      int j = dijpower(i);
+      if (i == j){
+	addlink(i);
+
+      }
+    }
+  while(nextptr != NULL)
+    {
+      printf("%d\n", nextptr->value);
+      nextptr = nextptr->ptr;
+    }
+
+
+}
+
+int dijpower(int input)
+{
+  int result = 0;;
+  char* conversion = malloc(7*sizeof(char));
+  sprintf(conversion, "%d", input);
+  int nums[7];
+
+  for(int i = 0; conversion[i] != '\0'; i++)
+    {
+      nums[i] = conversion[i];
+      nums[i] = nums[i] - '0';
+    }
+  for(int i = 0; conversion[i] != '\0'; i++)
+    {
+      result += pow(nums[i],5);
+    }
+
+  return result;
+}
+
+bool addlink(int input)
+{
+  node* newnode = malloc(sizeof(node));
+  if(newnode == NULL)
+    {
+      return false;
+    }
+  newnode -> value = input;
+  
+
+  newnode -> ptr = first;
+  first = newnode;
+  return true;
+}

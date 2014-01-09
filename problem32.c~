@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool pandig(int product, int a, int b);
+
+int main(void)
+{
+  int product;
+  for (int i = 1; i < 1000; i++)
+    {
+      for(int j = 1; j < 1000; j++)
+	{
+	  product = i*j;
+	  bool pandig(product, i, j);
+	}
+    }
+  
+
+
+}
+
+bool pandig(int product, int a, int b)
+{
+  char buffer1[8];
+  char buffer2[4];
+  char buffer3[4];
+  bool nums[10];
+
+  // start wtih each of the nums being not present
+  for(int num = 0; num < 10; num++)
+    {
+      nums[num] = false;
+    }
+
+  // convert the inputs to strings
+  sprintf(buffer1, "%d", product);
+  sprintf(buffer2, "%d", a);
+  sprintf(buffer3, "%d", b);
+
+  // check the product string
+  for (int i = 0; buffer1[i] != '\0';i++)
+    {
+      if(nums[buffer1[i]-'0'])
+	{
+	  return false;
+	}
+      else
+	{
+	  nums[buffer1[i] - '0'] = true;
+	}
+      
+    }
+  // check the 'a' string
+  for (int j = 0; buffer2[j] != '\0';j++)
+    {
+      if(nums[buffer2[j]-'0'])
+	{
+          return false;
+	}
+      else
+	{
+          nums[buffer2[j] - '0'] = true;
+        }
+    }
+
+
+
+  // check the 'b' string
+  for (int k = 0; buffer3[k] != '\0';k++)
+    {
+      if(nums[buffer3[k]-'0'])
+        {
+          return false;
+        }
+      else
+        {
+          nums[buffer3[k] - '0'] = true;
+        }
+    }
+
+  // check if all elements of nums are true
+
+}
